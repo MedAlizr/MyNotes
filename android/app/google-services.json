@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "853428317217",
+    "project_id": "mynotes-dzl",
+    "storage_bucket": "mynotes-dzl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853428317217:android:329621b964d91eada90760",
+        "android_client_info": {
+          "package_name": "com.example.learningdart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853428317217-9oah94fqbu84hpri41g0k769e7m3650n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI6z9rcyV8xLQly44-UC7TKtFNdPWJa34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853428317217-9oah94fqbu84hpri41g0k769e7m3650n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
