@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
+import 'package:learningdart/constants/routes.dart';
+
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -81,7 +83,7 @@ late final  TextEditingController _email;
                 child : const Text('Register'),
                 ),
                 TextButton(onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login/', (route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
                 },child: const Text('Already have an account? login here !'),)
               ],  
             ),
