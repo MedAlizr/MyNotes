@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '853428317217',
     projectId: 'mynotes-dzl',
     storageBucket: 'mynotes-dzl.appspot.com',
-    iosClientId: '853428317217-2ldjftrvdo2vh3iu4tfqloicq4euc9gr.apps.googleusercontent.com',
+    iosClientId:
+        '853428317217-2ldjftrvdo2vh3iu4tfqloicq4euc9gr.apps.googleusercontent.com',
     iosBundleId: 'com.example.learningdart',
   );
 }

@@ -3,8 +3,6 @@ import 'package:learningdart/constants/routes.dart';
 import 'package:learningdart/enums/menu_action.dart';
 import 'package:learningdart/services/auth/auth_service.dart';
 
-
-
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
 
@@ -16,27 +14,29 @@ class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         title: const Text('Main UI'),
         actions: [
           PopupMenuButton<MenuAction>(
-            onSelected: (value) async{ 
+            onSelected: (value) async {
               switch (value) {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
-                  if(shouldLogout){
-                     await AuthService.firebase().logOut();
-                      Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
+                  if (shouldLogout) {
+                    await AuthService.firebase().logOut();
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }
               }
             },
-             itemBuilder: (context) {
-              return [const PopupMenuItem<MenuAction>(
-                value: MenuAction.logout,
-                child: Text('log out'),
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('log out'),
                 ),
-              ]; 
-            }, 
+              ];
+            },
           )
         ],
       ),
@@ -44,24 +44,27 @@ class _NotesViewState extends State<NotesView> {
     );
   }
 }
-Future<bool> showLogOutDialog(BuildContext context){
- return showDialog<bool>(
+
+Future<bool> showLogOutDialog(BuildContext context) {
+  return showDialog<bool>(
     context: context,
-    builder: (context){
+    builder: (context) {
       return AlertDialog(
-        title:  const Text('Sign out'),
+        title: const Text('Sign out'),
         content: const Text('Are you sure you want to leave like a bitch ?'),
         actions: [
-          TextButton(onPressed: (){
-            Navigator.of(context).pop(false);
-          },child: const Text('Cancer')
-          ),
-           TextButton(onPressed: (){
-            Navigator.of(context).pop(true);
-           },child: const Text('Loglout')
-          )
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+              child: const Text('Cancer')),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+              child: const Text('Loglout'))
         ],
       );
     },
-  ).then((value) => value ?? false); 
+  ).then((value) => value ?? false);
 }
