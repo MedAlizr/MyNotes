@@ -5,7 +5,7 @@ import 'package:learningdart/services/auth/auth_service.dart';
 import 'package:learningdart/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  const LoginView({Key? key}) : super(key: key);
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -16,17 +16,17 @@ class _LoginViewState extends State<LoginView> {
   late final TextEditingController _password;
 
   @override
-  void dispose() {
-    _email.dispose();
-    _password.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
   }
 
   @override
@@ -43,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              hintText: 'Enter your Email',
+              hintText: 'Enter your email here',
             ),
           ),
           TextField(
@@ -51,7 +51,9 @@ class _LoginViewState extends State<LoginView> {
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            decoration: const InputDecoration(hintText: 'Enter your password'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your password here',
+            ),
           ),
           TextButton(
             onPressed: () async {
@@ -64,24 +66,32 @@ class _LoginViewState extends State<LoginView> {
                 );
                 final user = AuthService.firebase().currentUser;
                 if (user?.isEmailVerified ?? false) {
+                  // user's email is verified
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     notesRoute,
                     (route) => false,
                   );
                 } else {
+                  // user's email is NOT verified
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     verifyEmailRoute,
                     (route) => false,
                   );
                 }
               } on UserNotFoundAuthException {
-                await showErrorDialog(context, 'user not found');
+                await showErrorDialog(
+                  context,
+                  'User not found',
+                );
               } on WrongPasswordAuthException {
-                await showErrorDialog(context, 'wrong credentials');
+                await showErrorDialog(
+                  context,
+                  'Wrong credentials',
+                );
               } on GenericAuthException {
                 await showErrorDialog(
                   context,
-                  'authentication error',
+                  'Authentication error',
                 );
               }
             },
@@ -89,10 +99,12 @@ class _LoginViewState extends State<LoginView> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil(registerRoute, (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                registerRoute,
+                (route) => false,
+              );
             },
-            child: const Text("Not registered yet ? Press here"),
+            child: const Text('Not registered yet? Register here!'),
           )
         ],
       ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:learningdart/constants/routes.dart';
 import 'package:learningdart/services/auth/auth_service.dart';
 import 'package:learningdart/views/login_view.dart';
-import 'package:learningdart/views/notes_view.dart';
+import 'package:learningdart/views/notes/new_note_view.dart';
+import 'package:learningdart/views/notes/notes_view.dart';
 import 'package:learningdart/views/register_view.dart';
 import 'package:learningdart/views/verify_email_view.dart';
 
@@ -12,22 +13,22 @@ void main() {
     MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
       routes: {
-        notesRoute: (context) => const NotesView(),
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
+        notesRoute: (context) => const NotesView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
+        newNoteRoute: (context) => const NewNoteView(),
       },
     ),
   );
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
